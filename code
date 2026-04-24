@@ -1,0 +1,12 @@
+from scapy.all import *                                                                                                     
+sount = 0                                                                                                                       
+count = 0                                                                   
+pkt1 = Ether(dst="ff:ff:ff:ff:ff:ff")/ ARP(op=1,  pdst="192.168.1.0/24")
+pkt1.show()                                                                                                                                     
+answered, unanswered = srp(pkt1, timeout=2)                                                     
+
+for sent, received in answered:                                                                                       
+    count+=1                                                        
+    print("recieved", count)                                                           
+    print(received[ARP].psrc, received[ARP].hwsrc)                                                                           
+print("Total response recieved", count)                 
